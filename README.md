@@ -13,6 +13,8 @@
   - https://nodejs.org/dist/latest-v21.x/docs/api/corepack.html
 - https://expressjs.com/
 - https://npmtrends.com/
+- https://ecma-international.org/publications-and-standards/standards/ecma-262/
+- https://developer.mozilla.org/en-US/
 
 ## init JS project
 
@@ -40,3 +42,11 @@
 3. Abhängigkeiten installieren: `npm install`
 4. Applikation starten: `npm run dev`
 5. Im Browser `http://localhost:5173/` öffnen
+
+## Debugging
+
+- Im Browser: sources Tab öffnen - Datei suchen - Breakpoint setzen (Zeile markieren) - reload
+- In Node.js:
+  - https://code.visualstudio.com/docs/nodejs/nodejs-debugging
+  - https://www.jetbrains.com/help/webstorm/running-and-debugging-node-js.html
+  - `node --inspect-brk index.js` => In Chrome: chrome://inspect => Umgebung auswählen => Breakpoint setzen
