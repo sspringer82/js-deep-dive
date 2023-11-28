@@ -32,3 +32,11 @@
 2. ins Verzeichnis wechseln (`cd js-deep-dive/node-basic`)
 3. Abhängigkeiten installieren: `npm install` 
 4. Prozess starten: `node index.js` alternativ: `package.json` > `scripts` > `start` => auf der Konsole `npm start`
+
+## Vite Projekt erzeugen
+
+1. `npm create vite@latest fe-vite -- --template vanilla`
+2. Ins Verzeichnis wechseln: `cd fe-vite`
+3. Abhängigkeiten installieren: `npm install`
+4. Applikation starten: `npm run dev`
+5. Im Browser `http://localhost:5173/` öffnen
