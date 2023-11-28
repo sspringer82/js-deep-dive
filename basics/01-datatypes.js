@@ -13,7 +13,7 @@ console.log(0.1 + 0.2); // achtung bei fließkomma-Operationen
 console.log(Number.MAX_SAFE_INTEGER); // größtmögliche Ganzahl
 const n3 = 3e14;
 const n4 = 0b101; // binär
-// const n5 = 0123; // oktalzahl
+const n5 = 0o123; // oktalzahl
 const n6 = 123; // dezimal
 const n7 = 0x123af; // hexadezimalzahlen
 const n8 = 1_000_000; // numeric separator
