@@ -1,0 +1,18 @@
+{
+  "name": "mynodeapp",
+  "version": "1.0.0",
+  "description": "My description",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "fancy"
+  ],
+  "author": "Sebastian Springer <sebastian.springer@maibornwolff.de>",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
