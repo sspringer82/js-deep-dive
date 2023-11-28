@@ -29,3 +29,6 @@
 
 ## project checkout
 1. Quellcode laden (download zip des Repos oder git clone)
+2. ins Verzeichnis wechseln (`cd js-deep-dive/node-basic`)
+3. Abhängigkeiten installieren: `npm install` 
+4. Prozess starten: `node index.js` alternativ: `package.json` > `scripts` > `start` => auf der Konsole `npm start`
