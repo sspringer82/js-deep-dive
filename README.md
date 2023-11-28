@@ -15,6 +15,13 @@
 - https://npmtrends.com/
 - https://ecma-international.org/publications-and-standards/standards/ecma-262/
 - https://developer.mozilla.org/en-US/
+- Code Style
+  - https://standardjs.com/
+  - https://google.github.io/styleguide/jsguide.html
+  - https://github.com/airbnb/javascript
+- Tools
+  - Code Formatter: https://prettier.io/
+  - ESLint: https://eslint.org/
 
 ## init JS project
 
