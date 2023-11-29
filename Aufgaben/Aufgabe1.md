@@ -1,6 +1,6 @@
 # Aufgabe 1 - Backend setup
 
-1. Neues Verzeichnis `addressbook`
+1. Neues Verzeichnis `addressbook` - in das Verzeichnis wechseln `cd addressbook`
 2. `npm init -y`
 3. in der package.json => `"type": "module"` für neues Modulsystem
 4. `.gitignore` mit Inhalt `node_modules` erzeugen
