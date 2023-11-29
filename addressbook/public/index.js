@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function handleForm() {
   const form = document.querySelector('form');
-  form.addEventListener('submit', (event) => {
+  form.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     // daten sammeln
@@ -88,59 +88,20 @@ function handleForm() {
     };
 
     // daten zum server senden
-    /*
-    fetch('http://localhost:8080/addresses', {
+    const response = await fetch('http://localhost:8080/addresses', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(newAddress),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Could not save the data');
-        }
-        return response.json();
-      })
-      .then((savedData) => {
-        // neue Zeile einfügen
-        const tbody = document.querySelector('tbody');
-        createRow(savedData, tbody);
-      });
-      */
-    communicateWithServer(
-      'http://localhost:8080/addresses',
-      'POST',
-      newAddress,
-      (error, result) => {
-        if (error) {
-          throw new Error('whoops');
-        }
-        const tbody = document.querySelector('tbody');
-        createRow(result, tbody);
-      }
-    );
-  });
-}
-
-async function communicateWithServer(url, method, payload = null, callback) {
-  const options = {
-    method,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
-  if (payload !== null) {
-    options.body = JSON.stringify(payload);
-  }
-  try {
-    const response = await fetch(url, options);
+    });
     if (!response.ok) {
-      callback(new Error('Request Failed'));
+      throw new Error('Could not save the data');
     }
-    const result = await response.json();
-    callback(null, result);
-  } catch (error) {
-    callback(error);
-  }
+    const savedData = await response.json();
+
+    // neue Zeile einfügen
+    const tbody = document.querySelector('tbody');
+    createRow(savedData, tbody);
+  });
 }
