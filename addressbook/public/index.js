@@ -4,7 +4,41 @@ function createCell(content, tr) {
   tr.appendChild(td);
 }
 
+function addDeleteButton(id, tr) {
+  const td = document.createElement('td');
+  const button = document.createElement('button');
+  button.id = id;
+  button.innerText = 'löschen';
+  // button.addEventListener('click', (event) => {
+  //   fetch(`http://localhost:8080/addresses/${id}`, {
+  //     method: 'DELETE',
+  //     headers: { 'Content-Type': 'application/json' },
+  //   }).then((response) => {
+  //     if (response.ok) {
+  //       event.target.parentNode.parentNode.remove();
+  //     }
+  //   });
+  // });
+  td.appendChild(button);
+  tr.appendChild(td);
+}
+
+function handleDelete() {
+  document.querySelector('tbody').addEventListener('click', (event) => {
+    const id = event.target.id;
+    fetch(`http://localhost:8080/addresses/${id}`, {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+    }).then((response) => {
+      if (response.ok) {
+        event.target.parentNode.parentNode.remove();
+      }
+    });
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  handleDelete();
   const button = document.createElement('button');
   button.innerText = 'click me';
   button.addEventListener('click', (event) => {
@@ -32,6 +66,9 @@ document.addEventListener('DOMContentLoaded', () => {
         createCell(address.city, tr);
         createCell(address.zip, tr);
         createCell(address.country, tr);
+
+        addDeleteButton(address.id, tr);
+
         tbody.appendChild(tr);
       });
     });

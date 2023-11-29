@@ -7,7 +7,7 @@ import { create, getAll, getOne, remove, update } from './controller.js';
 const router = express.Router();
 
 // router.get('/', controller.getAll.bind(controller));
-router.get('/', getAll);
+router.get('/', getAll); // http://localhost:8080/addresses
 router.get('/:id', getOne);
 router.post('/', create);
 router.put('/:id', update);
