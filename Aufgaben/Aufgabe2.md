@@ -19,3 +19,6 @@ const data = [
   {id: 2, firstname: 'Lisa', lastname: 'Müller', street: '42 Main st', city: 'New York', zip: '12345', country: 'USA'}
 ]
 ```
+
+PUT: Index des bestehenden Element mit array.findIndex suchen und mit `data[index] = updatedAddress` überschreiben
+DELETE: Index suchen und mit array.splice entfernen `data.splice(index, 1)`
