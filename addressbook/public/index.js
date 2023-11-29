@@ -88,6 +88,7 @@ function handleForm() {
     };
 
     // daten zum server senden
+    /*
     fetch('http://localhost:8080/addresses', {
       method: 'POST',
       headers: {
@@ -106,5 +107,40 @@ function handleForm() {
         const tbody = document.querySelector('tbody');
         createRow(savedData, tbody);
       });
+      */
+    communicateWithServer(
+      'http://localhost:8080/addresses',
+      'POST',
+      newAddress,
+      (error, result) => {
+        if (error) {
+          throw new Error('whoops');
+        }
+        const tbody = document.querySelector('tbody');
+        createRow(result, tbody);
+      }
+    );
   });
+}
+
+async function communicateWithServer(url, method, payload = null, callback) {
+  const options = {
+    method,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+  if (payload !== null) {
+    options.body = JSON.stringify(payload);
+  }
+  try {
+    const response = await fetch(url, options);
+    if (!response.ok) {
+      callback(new Error('Request Failed'));
+    }
+    const result = await response.json();
+    callback(null, result);
+  } catch (error) {
+    callback(error);
+  }
 }
