@@ -1,54 +1,32 @@
-const data = [
-  {
-    id: 1,
-    firstname: 'Klaus',
-    lastname: 'Müller',
-    street: '42 Main st',
-    city: 'New York',
-    zip: '12345',
-    country: 'USA',
-  },
-  {
-    id: 2,
-    firstname: 'Lisa',
-    lastname: 'Müller',
-    street: '42 Main st',
-    city: 'New York',
-    zip: '12345',
-    country: 'USA',
-  },
-];
+import {
+  getAll as modelGetAll,
+  getOne as modelGetOne,
+  create as modelCreate,
+  update as modelUpdate,
+  remove as modelRemove,
+} from './model.js';
 
 export const getAll = (request, response) => {
-  response.json(data);
+  response.json(modelGetAll());
 };
 
 export const getOne = (request, response) => {
   const id = parseInt(request.params.id, 10);
-  const address = data.find((item) => item.id === id);
+
+  const address = modelGetOne(id);
+
   response.json(address);
 };
 
 export const create = (request, response) => {
-  const id = data.length + 1;
-
-  const newAddress = {
-    ...request.body,
-    id,
-  };
-
-  data.push(newAddress);
-
+  const newAddress = modelCreate(request.body);
   response.json(newAddress);
 };
 
 export const update = (request, response) => {
   const id = parseInt(request.params.id, 10);
-  const updatedAddress = request.body;
 
-  const index = data.findIndex((address) => address.id === id);
-
-  data[index] = updatedAddress;
+  const updatedAddress = modelUpdate(id, request.body);
 
   response.json(updatedAddress);
 };
@@ -56,9 +34,7 @@ export const update = (request, response) => {
 export const remove = (request, response) => {
   const id = parseInt(request.params.id, 10);
 
-  const index = data.findIndex((address) => address.id === id);
-
-  data.splice(index, 1);
+  modelRemove(id);
 
   response.status(204).send();
 };
