@@ -1,76 +1,14 @@
 import express from 'express';
+import addressRouter from './addresses/index.js';
 
 const app = express();
 
 app.use(express.json());
 
+app.use('/addresses', addressRouter);
+
 app.get('/', (request, response) => {
   response.send('Hallo Client');
-});
-
-const data = [
-  {
-    id: 1,
-    firstname: 'Klaus',
-    lastname: 'Müller',
-    street: '42 Main st',
-    city: 'New York',
-    zip: '12345',
-    country: 'USA',
-  },
-  {
-    id: 2,
-    firstname: 'Lisa',
-    lastname: 'Müller',
-    street: '42 Main st',
-    city: 'New York',
-    zip: '12345',
-    country: 'USA',
-  },
-];
-
-app.get('/addresses', (request, response) => {
-  response.json(data);
-});
-
-app.get('/addresses/:id', (request, response) => {
-  const id = parseInt(request.params.id, 10);
-  const address = data.find((item) => item.id === id);
-  response.json(address);
-});
-
-app.post('/addresses', (request, response) => {
-  const id = data.length + 1;
-
-  const newAddress = {
-    ...request.body,
-    id,
-  };
-
-  data.push(newAddress);
-
-  response.json(newAddress);
-});
-
-app.put('/addresses/:id', (request, response) => {
-  const id = parseInt(request.params.id, 10);
-  const updatedAddress = request.body;
-
-  const index = data.findIndex((address) => address.id === id);
-
-  data[index] = updatedAddress;
-
-  response.json(updatedAddress);
-});
-
-app.delete('/addresses/:id', (request, response) => {
-  const id = parseInt(request.params.id, 10);
-
-  const index = data.findIndex((address) => address.id === id);
-
-  data.splice(index, 1);
-
-  response.status(204).send();
 });
 
 app.listen(8080, () =>
