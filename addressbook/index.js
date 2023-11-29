@@ -52,6 +52,27 @@ app.post('/addresses', (request, response) => {
   response.json(newAddress);
 });
 
+app.put('/addresses/:id', (request, response) => {
+  const id = parseInt(request.params.id, 10);
+  const updatedAddress = request.body;
+
+  const index = data.findIndex((address) => address.id === id);
+
+  data[index] = updatedAddress;
+
+  response.json(updatedAddress);
+});
+
+app.delete('/addresses/:id', (request, response) => {
+  const id = parseInt(request.params.id, 10);
+
+  const index = data.findIndex((address) => address.id === id);
+
+  data.splice(index, 1);
+
+  response.status(204).send();
+});
+
 app.listen(8080, () =>
   console.log('Server is listening to http://localhost:8080')
 );
